@@ -51,8 +51,8 @@
           <span class="theme-icon" aria-hidden="true">☾</span>
           <span class="theme-label">다크</span>
         </button>
-        <button class="ghost-btn" type="button">로그인</button>
-        <button class="primary-btn" type="button">무료로 시작하기</button>
+        <button class="ghost-btn" type="button" data-action="login">로그인</button>
+        <button class="primary-btn" type="button" data-action="start-free">무료로 시작하기</button>
       </div>
     </header>
 
@@ -70,7 +70,7 @@
               <span>검색</span>
               <input id="searchInput" type="search" placeholder="예: 엑셀, 보고서, 노션, 구글시트" />
             </label>
-            <button class="primary-btn" type="button">이번 주 인기 자료 보기</button>
+            <button class="primary-btn" type="button" data-action="show-popular">이번 주 인기 자료 보기</button>
           </div>
           <div class="quick-stats" aria-label="서비스 지표">
             <article>
@@ -127,7 +127,7 @@
           </div>
 
           <div class="resource-grid" id="resourceGrid">
-            <article class="resource-card" data-tier="free" data-tags="엑셀 보고서 자동화" data-title="보고서 초안 자동 생성 프롬프트">
+            <article class="resource-card" tabindex="0" role="button" data-popular="true" data-tier="free" data-tags="엑셀 보고서 자동화" data-title="보고서 초안 자동 생성 프롬프트">
               <div class="card-topline">
                 <span class="tag free">무료</span>
                 <span class="meta">8분</span>
@@ -139,7 +139,7 @@
               </div>
             </article>
 
-            <article class="resource-card premium-card" data-tier="premium" data-tags="노션 템플릿 일정 관리" data-title="노션 캘린더 운영 템플릿">
+            <article class="resource-card premium-card" tabindex="0" role="button" data-tier="premium" data-tags="노션 템플릿 일정 관리" data-title="노션 캘린더 운영 템플릿">
               <div class="card-topline">
                 <span class="tag premium">프리미엄</span>
                 <span class="meta">멤버 전용</span>
@@ -151,7 +151,7 @@
               </div>
             </article>
 
-            <article class="resource-card" data-tier="free" data-tags="구글시트 엑셀 함수 자동화" data-title="구글시트 반복 작업 줄이기">
+            <article class="resource-card" tabindex="0" role="button" data-tier="free" data-tags="구글시트 엑셀 함수 자동화" data-title="구글시트 반복 작업 줄이기">
               <div class="card-topline">
                 <span class="tag free">무료</span>
                 <span class="meta">체크리스트</span>
@@ -163,7 +163,7 @@
               </div>
             </article>
 
-            <article class="resource-card premium-card" data-tier="premium" data-tags="마케팅 문구 광고 카피 프롬프트" data-title="광고 카피 생성 레시피">
+            <article class="resource-card premium-card" tabindex="0" role="button" data-popular="true" data-tier="premium" data-tags="마케팅 문구 광고 카피 프롬프트" data-title="광고 카피 생성 레시피">
               <div class="card-topline">
                 <span class="tag premium">프리미엄</span>
                 <span class="meta">다운로드</span>
@@ -175,7 +175,7 @@
               </div>
             </article>
 
-            <article class="resource-card" data-tier="free" data-tags="엑셀 대시보드 실적" data-title="월간 실적 대시보드 예제">
+            <article class="resource-card" tabindex="0" role="button" data-popular="true" data-tier="free" data-tags="엑셀 대시보드 실적" data-title="월간 실적 대시보드 예제">
               <div class="card-topline">
                 <span class="tag free">무료</span>
                 <span class="meta">샘플</span>
@@ -187,7 +187,7 @@
               </div>
             </article>
 
-            <article class="resource-card premium-card" data-tier="premium" data-tags="자동화 레시피 이메일 정리" data-title="메일 정리 자동화 레시피">
+            <article class="resource-card premium-card" tabindex="0" role="button" data-tier="premium" data-tags="자동화 레시피 이메일 정리" data-title="메일 정리 자동화 레시피">
               <div class="card-topline">
                 <span class="tag premium">프리미엄</span>
                 <span class="meta">고급 레시피</span>
@@ -237,17 +237,17 @@
               </div>
             </div>
             <div class="pricing-grid">
-              <article>
+              <article tabindex="0" role="button" data-plan="라이트">
                 <p class="plan-name">라이트</p>
                 <strong>월 9,900원</strong>
                 <span>주 2회 신규 템플릿</span>
               </article>
-              <article class="featured-plan">
+              <article class="featured-plan" tabindex="0" role="button" data-plan="프로">
                 <p class="plan-name">프로</p>
                 <strong>월 19,900원</strong>
                 <span>전체 자료 + 프리미엄 레시피</span>
               </article>
-              <article>
+              <article tabindex="0" role="button" data-plan="팀">
                 <p class="plan-name">팀</p>
                 <strong>월 49,000원</strong>
                 <span>공유 워크스페이스와 팀용 템플릿</span>
@@ -258,7 +258,7 @@
               <li>실무 프롬프트와 템플릿 무제한</li>
               <li>신규 자료 우선 공개</li>
             </ul>
-            <button class="primary-btn full-width" type="button">멤버십 시작하기</button>
+            <button class="primary-btn full-width" type="button" data-action="start-membership">멤버십 시작하기</button>
           </section>
         </aside>
       </section>

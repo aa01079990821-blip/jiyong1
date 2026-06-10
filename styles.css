@@ -442,12 +442,15 @@ button {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  cursor: pointer;
 }
 
-.resource-card:hover {
+.resource-card:hover,
+.resource-card:focus-visible {
   transform: translateY(-3px);
   border-color: rgba(22, 93, 69, 0.25);
   box-shadow: 0 20px 54px rgba(29, 36, 47, 0.16);
+  outline: none;
 }
 
 .resource-card h4 {
@@ -513,6 +516,10 @@ button {
   display: none;
 }
 
+.resource-card.is-popular {
+  border-color: rgba(217, 140, 43, 0.42);
+}
+
 .premium-card {
   background: var(--premium-card-bg);
 }
@@ -556,6 +563,24 @@ button {
 .tool-list article,
 .pricing-grid article {
   padding: 14px 16px;
+}
+
+.pricing-grid article {
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.pricing-grid article:hover,
+.pricing-grid article:focus-visible,
+.pricing-grid article.is-selected {
+  border-color: rgba(22, 93, 69, 0.32);
+  box-shadow: 0 12px 28px rgba(29, 36, 47, 0.12);
+  outline: none;
+}
+
+.pricing-grid article:hover,
+.pricing-grid article:focus-visible {
+  transform: translateY(-1px);
 }
 
 .tool-list strong,
