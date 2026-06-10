@@ -1,20 +1,66 @@
 :root {
   color-scheme: light;
   --bg: #f3efe7;
+  --bg-start: #f6f1e8;
+  --bg-end: #f2ece2;
+  --bg-accent-warm: rgba(217, 140, 43, 0.16);
+  --bg-accent-cool: rgba(22, 93, 69, 0.12);
+  --grid-line-strong: rgba(255, 255, 255, 0.22);
+  --grid-line-soft: rgba(255, 255, 255, 0.16);
   --panel: rgba(255, 255, 255, 0.76);
   --panel-strong: #ffffff;
+  --item-panel: rgba(255, 255, 255, 0.68);
+  --input-panel: rgba(255, 255, 255, 0.72);
   --text: #16202d;
   --muted: #5d6a78;
   --line: rgba(22, 32, 45, 0.12);
+  --subtle-line: rgba(22, 32, 45, 0.08);
   --primary: #165d45;
   --primary-strong: #0f4635;
   --accent: #d98c2b;
   --accent-soft: #f6d7ab;
   --premium: #1f3a5f;
   --shadow: 0 18px 50px rgba(29, 36, 47, 0.12);
+  --button-surface: rgba(255, 255, 255, 0.74);
+  --chip-surface: rgba(255, 255, 255, 0.7);
+  --foot-chip: rgba(22, 32, 45, 0.05);
+  --premium-card-bg: linear-gradient(180deg, rgba(31, 58, 95, 0.08), rgba(255, 255, 255, 0.78));
+  --ad-bg: linear-gradient(145deg, rgba(217, 140, 43, 0.12), rgba(255, 255, 255, 0.7));
+  --featured-plan-bg: linear-gradient(135deg, rgba(22, 93, 69, 0.12), rgba(255, 255, 255, 0.82));
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 16px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111827;
+  --bg-start: #0f172a;
+  --bg-end: #111827;
+  --bg-accent-warm: rgba(217, 140, 43, 0.14);
+  --bg-accent-cool: rgba(78, 181, 139, 0.14);
+  --grid-line-strong: rgba(255, 255, 255, 0.08);
+  --grid-line-soft: rgba(255, 255, 255, 0.06);
+  --panel: rgba(22, 32, 45, 0.78);
+  --panel-strong: #182334;
+  --item-panel: rgba(27, 39, 55, 0.78);
+  --input-panel: rgba(18, 27, 40, 0.82);
+  --text: #eef4f1;
+  --muted: #a7b4c4;
+  --line: rgba(226, 232, 240, 0.14);
+  --subtle-line: rgba(226, 232, 240, 0.1);
+  --primary: #61c79b;
+  --primary-strong: #2e9f76;
+  --accent: #f0ad55;
+  --accent-soft: rgba(240, 173, 85, 0.2);
+  --premium: #9dbef5;
+  --shadow: 0 18px 54px rgba(0, 0, 0, 0.34);
+  --button-surface: rgba(25, 36, 52, 0.9);
+  --chip-surface: rgba(25, 36, 52, 0.82);
+  --foot-chip: rgba(226, 232, 240, 0.08);
+  --premium-card-bg: linear-gradient(180deg, rgba(92, 137, 204, 0.14), rgba(22, 32, 45, 0.82));
+  --ad-bg: linear-gradient(145deg, rgba(217, 140, 43, 0.16), rgba(24, 35, 52, 0.82));
+  --featured-plan-bg: linear-gradient(135deg, rgba(97, 199, 155, 0.16), rgba(24, 35, 52, 0.86));
 }
 
 * {
@@ -30,9 +76,10 @@ body {
   font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(217, 140, 43, 0.16), transparent 32%),
-    radial-gradient(circle at right top, rgba(22, 93, 69, 0.12), transparent 28%),
-    linear-gradient(180deg, #f6f1e8 0%, #f2ece2 100%);
+    radial-gradient(circle at top left, var(--bg-accent-warm), transparent 32%),
+    radial-gradient(circle at right top, var(--bg-accent-cool), transparent 28%),
+    linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 body::before {
@@ -40,7 +87,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-image: linear-gradient(var(--grid-line-strong) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line-soft) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 70%);
   opacity: 0.35;
@@ -147,7 +194,8 @@ button {
 }
 
 .primary-btn,
-.ghost-btn {
+.ghost-btn,
+.theme-toggle {
   border-radius: 999px;
   padding: 12px 18px;
   transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
@@ -160,13 +208,34 @@ button {
 }
 
 .ghost-btn {
-  background: rgba(255, 255, 255, 0.74);
+  background: var(--button-surface);
   color: var(--text);
   border: 1px solid var(--line);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 94px;
+  justify-content: center;
+  background: var(--button-surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.theme-icon {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .primary-btn:hover,
 .ghost-btn:hover,
+.theme-toggle:hover,
 .chip:hover {
   transform: translateY(-1px);
 }
@@ -232,7 +301,7 @@ button {
   padding: 12px 14px;
   border-radius: 18px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--input-panel);
 }
 
 .search-box span {
@@ -265,8 +334,8 @@ button {
 .tool-list article,
 .pricing-grid article {
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.68);
-  border: 1px solid rgba(22, 32, 45, 0.08);
+  background: var(--item-panel);
+  border: 1px solid var(--subtle-line);
 }
 
 .quick-stats article {
@@ -351,13 +420,13 @@ button {
   padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--chip-surface);
   color: var(--text);
 }
 
 .chip.active {
   background: var(--text);
-  color: white;
+  color: var(--bg);
 }
 
 .resource-grid {
@@ -435,7 +504,7 @@ button {
 .card-foot span {
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(22, 32, 45, 0.05);
+  background: var(--foot-chip);
   color: var(--muted);
   font-size: 0.88rem;
 }
@@ -445,7 +514,7 @@ button {
 }
 
 .premium-card {
-  background: linear-gradient(180deg, rgba(31, 58, 95, 0.08), rgba(255, 255, 255, 0.78));
+  background: var(--premium-card-bg);
 }
 
 .ad-slot,
@@ -461,7 +530,7 @@ button {
   align-content: center;
   text-align: center;
   gap: 12px;
-  background: linear-gradient(145deg, rgba(217, 140, 43, 0.12), rgba(255, 255, 255, 0.7));
+  background: var(--ad-bg);
 }
 
 .ad-banner span {
@@ -509,7 +578,7 @@ button {
 
 .featured-plan {
   border-color: rgba(22, 93, 69, 0.24);
-  background: linear-gradient(135deg, rgba(22, 93, 69, 0.12), rgba(255, 255, 255, 0.82));
+  background: var(--featured-plan-bg);
 }
 
 .plan-name {
@@ -558,7 +627,7 @@ button {
   padding: 14px 16px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--input-panel);
 }
 
 .footer {
@@ -672,7 +741,8 @@ button {
   }
 
   .primary-btn,
-  .ghost-btn {
+  .ghost-btn,
+  .theme-toggle {
     width: 100%;
   }
 }

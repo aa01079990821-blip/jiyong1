@@ -4,6 +4,9 @@ const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
 const newsletterForm = document.getElementById('newsletterForm');
 const emailInput = document.getElementById('emailInput');
 const toast = document.getElementById('toast');
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle?.querySelector('.theme-icon');
+const themeLabel = themeToggle?.querySelector('.theme-label');
 
 const resourceCards = Array.from(resourceGrid.querySelectorAll('.resource-card'));
 let activeFilter = 'all';
@@ -36,6 +39,26 @@ function showToast(message) {
   }, 2400);
 }
 
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+
+  document.documentElement.dataset.theme = theme;
+  themeToggle?.setAttribute('aria-pressed', String(isDark));
+  themeToggle?.setAttribute('aria-label', isDark ? '화이트 모드로 전환' : '다크 모드로 전환');
+
+  if (themeIcon) {
+    themeIcon.textContent = isDark ? '☀' : '☾';
+  }
+
+  if (themeLabel) {
+    themeLabel.textContent = isDark ? '화이트' : '다크';
+  }
+}
+
+function getCurrentTheme() {
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
     activeFilter = button.dataset.filter || 'all';
@@ -45,6 +68,12 @@ filterButtons.forEach((button) => {
 });
 
 searchInput.addEventListener('input', applyFilters);
+
+themeToggle?.addEventListener('click', () => {
+  const nextTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', nextTheme);
+  applyTheme(nextTheme);
+});
 
 newsletterForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -60,4 +89,5 @@ newsletterForm.addEventListener('submit', (event) => {
   newsletterForm.reset();
 });
 
+applyTheme(getCurrentTheme());
 applyFilters();
